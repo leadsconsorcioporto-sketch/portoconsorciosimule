@@ -41,8 +41,76 @@ body {
     position: relative;
 }
 
+/* ========================================
+   FAIXA BRANCA SEPARADA (TOP BAR)
+   ======================================== */
+
+.top-bar {
+    background: #FFFFFF;
+    padding: 0.75rem 0;
+    /* Reduzido de 1rem para 0.75rem */
+    border-bottom: 2px solid #e5e7eb;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+
+.top-bar-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo dentro da faixa branca */
+.top-bar .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--porto-blue);
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-decoration: none;
+}
+
+.top-bar .logo img {
+    height: 60px;
+    width: auto;
+}
+
+.top-bar .logo-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar .logo-porto {
+    color: var(--porto-blue);
+    font-weight: 900;
+}
+
+/* Responsivo para mobile */
+@media (max-width: 768px) {
+    .top-bar {
+        background: #FFFFFF;
+        padding: 0.5rem 0;
+        /* Reduzido de 0.75rem para 0.5rem */
+        border-bottom: 2px solid #e5e7eb;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+}
+
+
 /* Hero com Header integrado */
 /* Hero com Header integrado */
+/* Hero Section (AGORA SEM O HEADER DENTRO) */
 .hero-section {
     position: relative;
     height: 100vh;
@@ -52,7 +120,24 @@ body {
     display: flex;
     flex-direction: column;
     overflow: hidden;
+    margin-top: 0;
+    /* Remove qualquer espaço acima */
 }
+
+/* Ajuste do hero-content para compensar a remoção do header */
+.hero-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem 2rem 3rem;
+    color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
 
 /* Ajuste específico para desktop - mostra mais da imagem */
 @media (min-width: 769px) {
@@ -69,24 +154,6 @@ body {
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
             url('backg.png') center/cover;
     }
-}
-
-
-
-/* Header dentro do hero */
-.header {
-    padding: 1.5rem 0;
-    position: relative;
-    z-index: 10;
-}
-
-.header-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
 }
 
 .logo {
@@ -107,10 +174,13 @@ body {
 
 .header-whatsapp {
     width: auto;
-    height: 45px;
-    padding: 0 1.2rem;
+    height: 36px;
+    /* Reduzido de 40px para 36px */
+    padding: 0 0.85rem;
+    /* Reduzido de 1rem para 0.85rem */
     background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-    border-radius: 25px;
+    border-radius: 20px;
+    /* Reduzido de 25px para 20px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -183,18 +253,24 @@ body {
 /* Mobile */
 @media (max-width: 768px) {
     .header-whatsapp {
-        height: 40px;
-        padding: 0 1rem;
+        height: 36px;
+        /* Reduzido de 40px para 36px */
+        padding: 0 0.85rem;
+        /* Reduzido de 1rem para 0.85rem */
     }
 
     .header-whatsapp svg {
-        width: 20px;
-        height: 20px;
+        width: 18px;
+        /* Reduzido de 20px para 18px */
+        height: 18px;
     }
 
     .whatsapp-label {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
+        /* Reduzido de 0.85rem para 0.8rem */
     }
+
+
 }
 
 
