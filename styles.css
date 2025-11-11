@@ -1522,7 +1522,7 @@ body {
 }
 
 .comparison-value .currency {
-    font-size: 0.95rem;
+    font-size: 0.85rem; /* Reduzido de 0.95rem */
     font-weight: 700;
     opacity: 0.85;
     line-height: 1;
@@ -1530,7 +1530,7 @@ body {
 }
 
 .comparison-value .amount {
-    font-size: 1.65rem;
+    font-size: 1.4rem; /* Reduzido de 1.65rem */
     font-weight: 900;
     letter-spacing: -0.5px;
     line-height: 1.1;
@@ -1554,11 +1554,11 @@ body {
     }
 
     .comparison-value .currency {
-        font-size: 1.4rem;
+        font-size: 1.1rem; /* Reduzido de 1.4rem */
     }
 
     .comparison-value .amount {
-        font-size: 2.75rem;
+        font-size: 2.2rem; /* Reduzido de 2.75rem */
         letter-spacing: -1px;
     }
 }
@@ -1573,9 +1573,6 @@ body {
     text-shadow: 0 2px 10px rgba(239, 68, 68, 0.2);
 }
 
-.comparison-features {
-    list-style: none;
-}
 
 .comparison-features li {
     padding: 0.6rem 0;
@@ -1591,6 +1588,20 @@ body {
     text-overflow: ellipsis;
 }
 
+/* Destaque SUAVE nos textos das características */
+.comparison-features li span:last-child {
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+@media (min-width: 769px) {
+    .comparison-features li span:last-child {
+        font-size: 1.05rem;
+        font-weight: 600;
+    }
+}
+
+
 @media (min-width: 769px) {
     .comparison-features li {
         padding: 1rem 0;
@@ -1602,6 +1613,8 @@ body {
 .comparison-features li:last-child {
     border-bottom: none;
 }
+
+
 
 .check-icon {
     color: #10B981;
@@ -2236,9 +2249,24 @@ body {
 }
 
 .logo img {
-    height: 80px;
+    height: 50px;
     width: auto;
 }
+
+/* Logo maior e mais à esquerda APENAS NO DESKTOP */
+@media (min-width: 769px) {
+    .header-content {
+        padding: 0 1rem 0 3rem;
+        /* Mais espaço à esquerda */
+    }
+
+    .logo img {
+        height: 70px;
+        /* Logo maior no desktop */
+        width: auto;
+    }
+}
+
 
 /* Logo no Footer */
 .footer-logo {
@@ -2398,27 +2426,6 @@ body {
     filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
 }
 
-.whatsapp-text {
-    position: absolute;
-    right: 70px;
-    background: white;
-    color: #128C7E;
-    padding: 0.75rem 1.25rem;
-    border-radius: 12px;
-    font-weight: 700;
-    font-size: 0.9rem;
-    white-space: nowrap;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-    opacity: 0;
-    transform: translateX(10px);
-    transition: all 0.3s ease;
-    pointer-events: none;
-}
-
-.whatsapp-float:hover {
-    transform: scale(1.1);
-    box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
-}
 
 .whatsapp-float:hover .whatsapp-text {
     opacity: 1;
@@ -2522,4 +2529,558 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 .modal-overlay {
     position: fixed !important;
     inset: 0;
+}
+
+/* ========================================
+   AJUSTES NAVBAR - APENAS DESKTOP
+   ======================================== */
+
+/* Desktop: Navbar FINA com logo GRANDE e bem centralizado */
+@media (min-width: 769px) {
+    .top-bar {
+        padding: 0.2rem 0; /* Navbar super fina */
+    }
+
+    .top-bar-content {
+        max-width: 1400px;
+        padding: 0 1.5rem 0 3rem; /* Mais à esquerda */
+        margin: 0 0 0 0;
+        align-items: center; /* Garante centralização vertical */
+    }
+
+    .top-bar .logo {
+        display: flex;
+        align-items: center; /* Logo centralizado verticalmente */
+    }
+
+    .top-bar .logo img {
+        height: 85px; /* Logo GRANDE */
+        width: auto;
+    }
+
+    /* Aumenta proporcionalmente o botão do WhatsApp */
+    .header-whatsapp {
+        height: 42px;
+        padding: 0 1.2rem;
+    }
+
+    .header-whatsapp svg {
+        width: 24px;
+        height: 24px;
+    }
+
+    .whatsapp-label {
+        font-size: 1.05rem;
+    }
+}
+
+/* Desktop grande: Logo ainda maior, navbar continua fina */
+@media (min-width: 1200px) {
+    .top-bar {
+        padding: 0.2rem 0; /* Navbar permanece super fina */
+    }
+
+    .top-bar .logo img {
+        height: 95px; /* Logo gigante em telas grandes */
+    }
+
+    .top-bar-content {
+        padding: 0 2rem 0 4rem; /* Ainda mais à esquerda */
+    }
+}
+
+
+/* ========================================
+   FIX HERO - APENAS DESKTOP (PC)
+   ======================================== */
+
+/* MOBILE: Mantém tudo como estava ORIGINALMENTE */
+@media (max-width: 768px) {
+    /* Esconde os botões do desktop no mobile */
+    .hero-buttons {
+        display: none !important;
+    }
+
+    /* Mostra o botão original do hero no mobile */
+    .hero-main-content .hero-cta {
+        display: inline-flex !important;
+    }
+
+    /* WhatsApp da navbar VISÍVEL no mobile */
+    .header-whatsapp {
+        display: flex !important;
+    }
+
+    /* WhatsApp flutuante menor no mobile */
+    .whatsapp-float {
+        width: 56px !important;
+        height: 56px !important;
+        bottom: 1.5rem !important;
+        right: 1.5rem !important;
+    }
+
+    .whatsapp-float svg {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+
+/* DESKTOP: Botões à direita, ao lado da família */
+@media (min-width: 769px) {
+    /* Remove WhatsApp da navbar no desktop */
+    .header-whatsapp {
+        display: none !important;
+    }
+
+    /* Hero section com position relative */
+    .hero-section {
+        position: relative;
+    }
+
+    /* ESCONDE o botão "SIMULE AGORA" original do hero-main-content no desktop */
+    .hero-main-content .hero-cta {
+        display: none !important;
+    }
+
+    /* Container dos botões - DIREITA da tela */
+    .hero-buttons {
+        position: absolute !important;
+        right: 4rem;
+        top: 50%;
+        transform: translateY(-50%);
+        display: flex !important;
+        flex-direction: column;
+        gap: 1rem;
+        z-index: 10;
+    }
+
+    /* Botão "SIMULE AGORA" - azul */
+    .hero-buttons .hero-cta {
+        display: inline-flex !important;
+        background: linear-gradient(135deg, #0046BE 0%, #4FC3F7 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        width: 240px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        box-shadow: 0 4px 15px rgba(0, 70, 190, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        text-decoration: none;
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        transition: all 0.3s ease;
+        margin: 0;
+    }
+
+    .hero-buttons .hero-cta:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(0, 70, 190, 0.6);
+    }
+
+    /* Botão WhatsApp - verde */
+    .hero-whatsapp {
+        display: flex !important;
+        background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 1rem;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+        box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
+        border: 2px solid rgba(255, 255, 255, 0.3);
+        width: 240px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .hero-whatsapp:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 25px rgba(37, 211, 102, 0.6);
+    }
+
+    .hero-whatsapp svg {
+        width: 24px;
+        height: 24px;
+        flex-shrink: 0;
+    }
+}
+
+/* Desktop grande - botões mais à direita */
+@media (min-width: 1200px) {
+    .hero-buttons {
+        right: 6rem !important;
+    }
+}
+
+/* Desktop médio - botões mais próximos da borda */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .hero-buttons {
+        right: 2rem !important;
+    }
+
+    .hero-buttons .hero-cta,
+    .hero-whatsapp {
+        width: 200px !important;
+        padding: 0.875rem 1.5rem !important;
+        font-size: 0.9rem !important;
+    }
+}
+
+/* ========================================
+   FIX HERO - AJUSTE DE ALTURA PERFEITO
+   ======================================== */
+
+/* Mobile: Hero cabe perfeitamente na tela */
+@media (max-width: 768px) {
+    .hero-section {
+        height: calc(100vh - 70px) !important;
+        min-height: calc(100vh - 70px) !important;
+        max-height: calc(100vh - 70px) !important;
+    }
+
+    .hero-content {
+        padding: 1rem 1.5rem 2rem !important;
+    }
+
+    .hero-badge {
+        margin-top: 0.5rem !important;
+        margin-bottom: auto !important;
+        padding: 0.6rem 1.5rem !important;
+        font-size: 0.75rem !important;
+    }
+
+    .hero-main-content {
+        margin-top: auto !important;
+        margin-bottom: 1rem !important;
+        gap: 0.75rem !important;
+    }
+
+    .hero h1 {
+        font-size: 1.75rem !important;
+        margin-bottom: 1rem !important;
+        line-height: 1.2 !important;
+    }
+
+    .hero p {
+        font-size: 1rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.5 !important;
+    }
+
+    .hero-cta {
+        padding: 0.85rem 1.75rem !important;
+        font-size: 0.95rem !important;
+        margin-top: 0.5rem !important;
+    }
+}
+
+/* Desktop: Hero cabe perfeitamente na tela */
+@media (min-width: 769px) {
+    .hero-section {
+        height: calc(100vh - 100px) !important;
+        min-height: calc(100vh - 100px) !important;
+        max-height: calc(100vh - 100px) !important;
+    }
+
+    .hero-content {
+        padding: 1.5rem 2rem 2.5rem !important;
+        justify-content: center !important;
+    }
+
+    .hero-badge {
+        padding: 0.85rem 2rem !important;
+        margin-bottom: 2.5rem !important;
+        font-size: 0.9rem !important;
+    }
+
+    .hero-main-content {
+        gap: 1rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero h1 {
+        font-size: 4rem !important;
+        margin-bottom: 1.5rem !important;
+        line-height: 1.15 !important;
+    }
+
+    .hero p {
+        font-size: 1.6rem !important;
+        margin-bottom: 2rem !important;
+        line-height: 1.6 !important;
+    }
+
+    /* Botões à direita */
+    .hero-buttons {
+        position: absolute !important;
+        right: 4rem !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+    }
+
+    .hero-buttons .hero-cta,
+    .hero-whatsapp {
+        padding: 0.9rem 1.8rem !important;
+        font-size: 0.95rem !important;
+    }
+}
+
+/* Desktop grande: ajustes proporcionais */
+@media (min-width: 1200px) {
+    .hero h1 {
+        font-size: 4.5rem !important;
+    }
+
+    .hero p {
+        font-size: 1.8rem !important;
+    }
+}
+
+/* Telas com altura baixa: ajustes extras */
+@media (min-width: 769px) and (max-height: 800px) {
+    .hero h1 {
+        font-size: 3.5rem !important;
+        margin-bottom: 1.25rem !important;
+    }
+
+    .hero p {
+        font-size: 1.4rem !important;
+        margin-bottom: 1.5rem !important;
+    }
+
+    .hero-badge {
+        margin-bottom: 2rem !important;
+        padding: 0.75rem 1.75rem !important;
+    }
+}
+
+/* iPhone específico */
+@media (max-width: 390px) and (min-height: 800px) {
+    .hero h1 {
+        font-size: 1.5rem !important;
+    }
+
+    .hero p {
+        font-size: 0.9rem !important;
+    }
+
+    .hero-badge {
+        font-size: 0.7rem !important;
+        padding: 0.55rem 1.3rem !important;
+    }
+}
+
+
+/* ========================================
+   HERO - POSICIONAR CONTEÚDO NA ALTURA DO CORPO (APENAS DESKTOP)
+   ======================================== */
+
+@media (min-width: 769px) {
+    .hero-content {
+        justify-content: flex-start !important;
+        padding-top: 2rem !important;
+    }
+
+    .hero-badge {
+        margin-top: 1rem !important;
+        margin-bottom: 18rem !important; /* GRANDE espaço para empurrar conteúdo para baixo */
+    }
+
+    .hero-main-content {
+        margin-top: 0 !important;
+        margin-bottom: auto !important;
+    }
+}
+
+/* Telas grandes - ajuste proporcional */
+@media (min-width: 1200px) {
+    .hero-badge {
+        margin-bottom: 20rem !important; /* Ainda mais espaço em telas grandes */
+    }
+}
+
+/* Telas com altura baixa - menos espaço */
+@media (min-width: 769px) and (max-height: 800px) {
+    .hero-badge {
+        margin-bottom: 14rem !important;
+    }
+}
+
+/* ========================================
+   HERO - AJUSTE BADGE (APENAS DESKTOP)
+   ======================================== */
+
+@media (min-width: 769px) {
+    .hero-content {
+        padding-top: 1rem !important; /* Aumentado de 0.5rem */
+    }
+
+    .hero-badge {
+        margin-top: 0.5rem !important; /* Positivo agora, ao invés de negativo */
+        margin-bottom: 18rem !important;
+    }
+}
+
+/* Telas grandes */
+@media (min-width: 1200px) {
+    .hero-content {
+        padding-top: 1.25rem !important;
+    }
+
+    .hero-badge {
+        margin-top: 0.75rem !important; /* Positivo também */
+        margin-bottom: 20rem !important;
+    }
+}
+
+/* Telas com altura baixa */
+@media (min-width: 769px) and (max-height: 800px) {
+    .hero-content {
+        padding-top: 0.75rem !important;
+    }
+
+    .hero-badge {
+        margin-top: 0.35rem !important;
+        margin-bottom: 14rem !important;
+    }
+}
+
+/* ========================================
+   COMPACTAÇÃO DE ESPAÇOS - TODAS AS SEÇÕES
+   ======================================== */
+
+/* Reduz padding geral das sections */
+.section {
+    padding: 2rem 1rem !important; /* Reduzido de 3rem */
+}
+
+@media (min-width: 769px) {
+    .section {
+        padding: 2.5rem 2rem !important; /* Reduzido de 3.5rem */
+    }
+}
+
+/* Remove espaços extras do título e subtítulo */
+.section-title {
+    margin-bottom: 0.75rem !important; /* Reduzido de 1rem */
+}
+
+.section-subtitle {
+    margin-bottom: 1.5rem !important; /* Reduzido de 2rem no desktop */
+}
+
+@media (min-width: 769px) {
+    .section-subtitle {
+        margin-bottom: 2rem !important; /* Reduzido de 3rem */
+    }
+}
+
+/* Compacta o comparison box */
+.comparison-box {
+    padding: 1.5rem 1rem !important; /* Reduzido */
+}
+
+@media (min-width: 769px) {
+    .comparison-box {
+        padding: 2.5rem 2.5rem !important; /* Reduzido de 3.5rem */
+    }
+}
+
+.comparison-box .section-subtitle {
+    margin-bottom: 1.5rem !important; /* Reduzido de 2rem */
+}
+
+@media (min-width: 769px) {
+    .comparison-box .section-subtitle {
+        margin-bottom: 2rem !important; /* Reduzido de 3rem */
+    }
+}
+
+/* Video Section compacta */
+.video-section {
+    padding: 3rem 2rem !important; /* Reduzido de 5rem */
+}
+
+@media (max-width: 640px) {
+    .video-section {
+        padding: 2rem 1.5rem !important; /* Reduzido de 3rem */
+    }
+}
+
+/* Secondary CTA compacta */
+.secondary-cta {
+    padding: 2rem 2rem !important; /* Reduzido de 3rem */
+}
+
+@media (max-width: 768px) {
+    .secondary-cta {
+        padding: 1.5rem 1rem !important; /* Reduzido de 2rem */
+    }
+}
+
+/* CTA Section compacta */
+.cta-section {
+    padding: 3rem 2rem !important; /* Reduzido de 4rem */
+    margin-top: 2rem !important; /* Reduzido de 3rem */
+}
+
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 2rem 1.5rem !important; /* Reduzido de 3rem */
+        margin-top: 1.5rem !important; /* Reduzido de 2rem */
+    }
+}
+
+/* Representative Badge compacta */
+.representative-badge {
+    padding: 2rem 2rem !important; /* Reduzido de 3rem */
+}
+
+/* Footer compacta */
+.footer-content {
+    padding: 3rem 2rem 1.5rem !important; /* Reduzido de 4rem */
+}
+
+.footer-grid {
+    margin-bottom: 2rem !important; /* Reduzido de 3rem */
+}
+
+/* Benefit list - reduz gap */
+.benefit-list {
+    gap: 2rem 3rem !important; /* Reduzido de 3rem 4rem */
+}
+
+@media (max-width: 768px) {
+    .benefit-list {
+        gap: 1.5rem !important; /* Reduzido de 2rem */
+    }
+}
+
+/* Vídeo HTML5 - Estilo */
+.video-player video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+}
+
+/* Controles do vídeo */
+.video-player video::-webkit-media-controls-panel {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+}
+
+.video-player video::-webkit-media-controls-play-button,
+.video-player video::-webkit-media-controls-current-time-display,
+.video-player video::-webkit-media-controls-time-remaining-display {
+    color: white;
 }
