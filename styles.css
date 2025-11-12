@@ -48,7 +48,6 @@ body {
 .top-bar {
     background: #FFFFFF;
     padding: 0.75rem 0;
-    /* Reduzido de 1rem para 0.75rem */
     border-bottom: 2px solid #e5e7eb;
     position: sticky;
     top: 0;
@@ -97,7 +96,6 @@ body {
     .top-bar {
         background: #FFFFFF;
         padding: 0.5rem 0;
-        /* Reduzido de 0.75rem para 0.5rem */
         border-bottom: 2px solid #e5e7eb;
         position: sticky;
         top: 0;
@@ -105,23 +103,24 @@ body {
         box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     }
 
+    .top-bar .logo img {
+        height: 75px !important; /* Aumentado de 60px para 75px */
+    }
+
 }
 
 
 /* Hero com Header integrado */
-/* Hero com Header integrado */
-/* Hero Section (AGORA SEM O HEADER DENTRO) */
 .hero-section {
     position: relative;
     height: 100vh;
     min-height: 100vh;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
-        url('backg.png') center/cover;
+        url('backg.png') center 45%/cover;
     display: flex;
     flex-direction: column;
     overflow: hidden;
     margin-top: 0;
-    /* Remove qualquer espaço acima */
 }
 
 /* Ajuste do hero-content para compensar a remoção do header */
@@ -139,20 +138,20 @@ body {
 }
 
 
-/* Ajuste específico para desktop - mostra mais da imagem */
+/* Ajuste específico para desktop - mostra a família completa */
 @media (min-width: 769px) {
     .hero-section {
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
-            url('backg.png') center 40%/cover;
+            url('backg.png') center 45%/cover;
         background-attachment: scroll;
     }
 }
 
-/* Mobile mantém o zoom atual */
+/* Mobile - mantém família completa visível */
 @media (max-width: 768px) {
     .hero-section {
         background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
-            url('backg.png') center/cover;
+            url('backg.png') center 45%/cover;
     }
 }
 
@@ -167,7 +166,6 @@ body {
 
 .logo img {
     height: 70px;
-    /* Aumentado de 50px para 70px */
     width: auto;
 }
 
@@ -175,12 +173,9 @@ body {
 .header-whatsapp {
     width: auto;
     height: 36px;
-    /* Reduzido de 40px para 36px */
     padding: 0 0.85rem;
-    /* Reduzido de 1rem para 0.85rem */
     background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
     border-radius: 20px;
-    /* Reduzido de 25px para 20px */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -250,39 +245,40 @@ body {
 }
 
 
-/* Mobile */
+/* Mobile - WhatsApp DENTRO da hero section, abaixo do badge */
 @media (max-width: 768px) {
-    .header-whatsapp {
-        height: 36px;
-        /* Reduzido de 40px para 36px */
-        padding: 0 0.85rem;
-        /* Reduzido de 1rem para 0.85rem */
+    /* Remove WhatsApp da navbar no mobile */
+    .top-bar .header-whatsapp {
+        display: none !important;
     }
 
-    .header-whatsapp svg {
+    /* WhatsApp dentro da hero, logo abaixo do badge */
+    .hero-section .header-whatsapp {
+        display: flex !important;
+        height: 36px;
+        padding: 0 0.85rem;
+        margin-top: 0.75rem;
+        position: static;
+    }
+
+    .hero-section .header-whatsapp svg {
         width: 18px;
-        /* Reduzido de 20px para 18px */
         height: 18px;
     }
 
-    .whatsapp-label {
+    .hero-section .whatsapp-label {
         font-size: 0.8rem;
-        /* Reduzido de 0.85rem para 0.8rem */
     }
-
-
 }
 
 
 
-/* Hero Content */
 /* Hero Content */
 .hero-content {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* Distribui espaço entre badge e conteúdo */
     align-items: center;
     text-align: center;
     padding: 2rem 2rem 3rem;
@@ -295,7 +291,6 @@ body {
 @media (max-width: 768px) {
     .hero-content {
         justify-content: flex-start;
-        /* Badge cola no topo */
         padding: 1rem 1.5rem 2rem;
     }
 }
@@ -306,19 +301,15 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.8rem;
-    /* Reduzido de 1rem para 0.8rem */
     background: rgba(255, 255, 255, 0.25);
     backdrop-filter: blur(20px) saturate(180%);
     padding: 1rem 2.5rem;
-    /* Reduzido de 1.25rem 3rem */
     border-radius: 50px;
     margin-bottom: 4rem;
     border: 2px solid rgba(255, 255, 255, 0.4);
     font-weight: 700;
     font-size: 0.95rem;
-    /* Reduzido de 1.2rem para 0.95rem */
     letter-spacing: 1px;
-    /* Reduzido de 1.5px para 1px */
     text-transform: uppercase;
     box-shadow:
         0 8px 32px rgba(0, 0, 0, 0.25),
@@ -328,7 +319,6 @@ body {
     position: relative;
     overflow: hidden;
     white-space: nowrap;
-    /* Garante que não quebre linha */
 }
 
 
@@ -339,9 +329,7 @@ body {
         font-size: 0.8rem;
         letter-spacing: 0.5px;
         margin-bottom: auto;
-        /* Badge fica no topo */
         margin-top: 1rem;
-        /* Pequeno espaço do header */
         max-width: 88%;
         text-align: center;
         line-height: 1.3;
@@ -350,20 +338,14 @@ body {
 }
 
 /* iPhone 12 e similares (390px x 844px) */
-/* iPhone 12 e similares (390px x 844px) */
 @media (max-width: 390px) and (min-height: 800px) {
     .hero-badge {
         padding: 0.5rem 1.2rem;
-        /* Reduzido de 0.7rem 1.5rem */
         font-size: 0.65rem;
-        /* Reduzido de 0.75rem */
         letter-spacing: 0.2px;
-        /* Reduzido de 0.3px */
         margin-top: 1rem;
         max-width: 85%;
-        /* Reduzido de 90% */
         gap: 0.5rem;
-        /* Reduz espaço entre estrela e texto */
     }
 }
 
@@ -386,7 +368,6 @@ body {
     align-items: center;
     gap: 1.5rem;
     margin-top: auto;
-    /* Empurra para o final da tela */
     margin-bottom: 2rem;
 }
 
@@ -661,10 +642,8 @@ body {
 }
 
 /* Section */
-/* Section */
 .section {
     padding: 3rem 1rem;
-    /* Reduzido de 5rem para 3rem */
     max-width: 1200px;
     margin: 0 auto;
     overflow-x: hidden;
@@ -682,7 +661,6 @@ body {
 @media (max-width: 768px) {
     .section:first-of-type {
         padding-top: 2rem;
-        /* Reduz espaço do topo */
     }
 }
 
@@ -690,7 +668,6 @@ body {
 @media (min-width: 769px) {
     .section {
         padding: 3.5rem 2rem;
-        /* Reduzido de 5rem para 3.5rem */
     }
 }
 
@@ -698,7 +675,6 @@ body {
 @media (max-width: 768px) {
     .section {
         padding: 2rem 0.5rem;
-        /* Reduzido de 3rem para 2rem */
         max-width: 100vw;
         width: 100%;
         overflow-x: hidden !important;
@@ -758,7 +734,6 @@ body {
     padding: 0 2rem;
     justify-items: center;
     align-items: stretch;
-    /* Garante altura igual nos cards */
 }
 
 @media (max-width: 768px) {
@@ -783,7 +758,6 @@ body {
     transition: transform 0.3s ease;
     max-width: 450px;
     height: 100%;
-    /* Ocupa toda a altura disponível */
 }
 
 .benefit-item:hover {
@@ -1220,7 +1194,6 @@ body {
     position: relative;
     width: 100%;
     padding-bottom: 56.25%;
-    /* 16:9 aspect ratio */
     background: #000;
     border-radius: 20px;
     overflow: hidden;
@@ -1522,7 +1495,7 @@ body {
 }
 
 .comparison-value .currency {
-    font-size: 0.85rem; /* Reduzido de 0.95rem */
+    font-size: 0.85rem;
     font-weight: 700;
     opacity: 0.85;
     line-height: 1;
@@ -1530,7 +1503,7 @@ body {
 }
 
 .comparison-value .amount {
-    font-size: 1.4rem; /* Reduzido de 1.65rem */
+    font-size: 1.4rem;
     font-weight: 900;
     letter-spacing: -0.5px;
     line-height: 1.1;
@@ -1554,11 +1527,11 @@ body {
     }
 
     .comparison-value .currency {
-        font-size: 1.1rem; /* Reduzido de 1.4rem */
+        font-size: 1.1rem;
     }
 
     .comparison-value .amount {
-        font-size: 2.2rem; /* Reduzido de 2.75rem */
+        font-size: 2.2rem;
         letter-spacing: -1px;
     }
 }
@@ -2257,12 +2230,10 @@ body {
 @media (min-width: 769px) {
     .header-content {
         padding: 0 1rem 0 3rem;
-        /* Mais espaço à esquerda */
     }
 
     .logo img {
         height: 70px;
-        /* Logo maior no desktop */
         width: auto;
     }
 }
@@ -2293,8 +2264,7 @@ body {
     }
 
     .logo img {
-        height: 65px;
-        /* Aumentado de 35px para 55px */
+        height: 75px; /* Aumentado de 65px para 75px */
     }
 
 
@@ -2467,8 +2437,6 @@ body {
 }
 
 /* Responsivo WhatsApp */
-
-/* Responsivo WhatsApp */
 @media (max-width: 768px) {
     .whatsapp-float {
         bottom: 1.5rem;
@@ -2538,23 +2506,23 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 /* Desktop: Navbar FINA com logo GRANDE e bem centralizado */
 @media (min-width: 769px) {
     .top-bar {
-        padding: 0.2rem 0; /* Navbar super fina */
+        padding: 0.2rem 0;
     }
 
     .top-bar-content {
         max-width: 1400px;
-        padding: 0 1.5rem 0 3rem; /* Mais à esquerda */
+        padding: 0 1.5rem 0 3rem;
         margin: 0 0 0 0;
-        align-items: center; /* Garante centralização vertical */
+        align-items: center;
     }
 
     .top-bar .logo {
         display: flex;
-        align-items: center; /* Logo centralizado verticalmente */
+        align-items: center;
     }
 
     .top-bar .logo img {
-        height: 85px; /* Logo GRANDE */
+        height: 85px;
         width: auto;
     }
 
@@ -2577,15 +2545,21 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 /* Desktop grande: Logo ainda maior, navbar continua fina */
 @media (min-width: 1200px) {
     .top-bar {
-        padding: 0.2rem 0; /* Navbar permanece super fina */
+        padding: 0.2rem 0;
     }
 
     .top-bar .logo img {
-        height: 95px; /* Logo gigante em telas grandes */
+        height: 95px;
     }
 
     .top-bar-content {
-        padding: 0 2rem 0 4rem; /* Ainda mais à esquerda */
+        padding: 0 2rem 0 4rem;
+    }
+
+    /* Ajuste extra para telas grandes - família completa visível */
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
+            url('backg.png') center 45%/cover !important;
     }
 }
 
@@ -2604,11 +2578,6 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
     /* Mostra o botão original do hero no mobile */
     .hero-main-content .hero-cta {
         display: inline-flex !important;
-    }
-
-    /* WhatsApp da navbar VISÍVEL no mobile */
-    .header-whatsapp {
-        display: flex !important;
     }
 
     /* WhatsApp flutuante menor no mobile */
@@ -2751,7 +2720,7 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 
     .hero-badge {
         margin-top: 0.5rem !important;
-        margin-bottom: auto !important;
+        margin-bottom: 0 !important;
         padding: 0.6rem 1.5rem !important;
         font-size: 0.75rem !important;
     }
@@ -2890,7 +2859,7 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 
     .hero-badge {
         margin-top: 1rem !important;
-        margin-bottom: 18rem !important; /* GRANDE espaço para empurrar conteúdo para baixo */
+        margin-bottom: 18rem !important;
     }
 
     .hero-main-content {
@@ -2902,7 +2871,7 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 /* Telas grandes - ajuste proporcional */
 @media (min-width: 1200px) {
     .hero-badge {
-        margin-bottom: 20rem !important; /* Ainda mais espaço em telas grandes */
+        margin-bottom: 20rem !important;
     }
 }
 
@@ -2919,11 +2888,11 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 
 @media (min-width: 769px) {
     .hero-content {
-        padding-top: 1rem !important; /* Aumentado de 0.5rem */
+        padding-top: 1rem !important;
     }
 
     .hero-badge {
-        margin-top: 0.5rem !important; /* Positivo agora, ao invés de negativo */
+        margin-top: 0.5rem !important;
         margin-bottom: 18rem !important;
     }
 }
@@ -2935,7 +2904,7 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
     }
 
     .hero-badge {
-        margin-top: 0.75rem !important; /* Positivo também */
+        margin-top: 0.75rem !important;
         margin-bottom: 20rem !important;
     }
 }
@@ -2958,108 +2927,108 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 
 /* Reduz padding geral das sections */
 .section {
-    padding: 2rem 1rem !important; /* Reduzido de 3rem */
+    padding: 2rem 1rem !important;
 }
 
 @media (min-width: 769px) {
     .section {
-        padding: 2.5rem 2rem !important; /* Reduzido de 3.5rem */
+        padding: 2.5rem 2rem !important;
     }
 }
 
 /* Remove espaços extras do título e subtítulo */
 .section-title {
-    margin-bottom: 0.75rem !important; /* Reduzido de 1rem */
+    margin-bottom: 0.75rem !important;
 }
 
 .section-subtitle {
-    margin-bottom: 1.5rem !important; /* Reduzido de 2rem no desktop */
+    margin-bottom: 1.5rem !important;
 }
 
 @media (min-width: 769px) {
     .section-subtitle {
-        margin-bottom: 2rem !important; /* Reduzido de 3rem */
+        margin-bottom: 2rem !important;
     }
 }
 
 /* Compacta o comparison box */
 .comparison-box {
-    padding: 1.5rem 1rem !important; /* Reduzido */
+    padding: 1.5rem 1rem !important;
 }
 
 @media (min-width: 769px) {
     .comparison-box {
-        padding: 2.5rem 2.5rem !important; /* Reduzido de 3.5rem */
+        padding: 2.5rem 2.5rem !important;
     }
 }
 
 .comparison-box .section-subtitle {
-    margin-bottom: 1.5rem !important; /* Reduzido de 2rem */
+    margin-bottom: 1.5rem !important;
 }
 
 @media (min-width: 769px) {
     .comparison-box .section-subtitle {
-        margin-bottom: 2rem !important; /* Reduzido de 3rem */
+        margin-bottom: 2rem !important;
     }
 }
 
 /* Video Section compacta */
 .video-section {
-    padding: 3rem 2rem !important; /* Reduzido de 5rem */
+    padding: 3rem 2rem !important;
 }
 
 @media (max-width: 640px) {
     .video-section {
-        padding: 2rem 1.5rem !important; /* Reduzido de 3rem */
+        padding: 2rem 1.5rem !important;
     }
 }
 
 /* Secondary CTA compacta */
 .secondary-cta {
-    padding: 2rem 2rem !important; /* Reduzido de 3rem */
+    padding: 2rem 2rem !important;
 }
 
 @media (max-width: 768px) {
     .secondary-cta {
-        padding: 1.5rem 1rem !important; /* Reduzido de 2rem */
+        padding: 1.5rem 1rem !important;
     }
 }
 
 /* CTA Section compacta */
 .cta-section {
-    padding: 3rem 2rem !important; /* Reduzido de 4rem */
-    margin-top: 2rem !important; /* Reduzido de 3rem */
+    padding: 3rem 2rem !important;
+    margin-top: 2rem !important;
 }
 
 @media (max-width: 768px) {
     .cta-section {
-        padding: 2rem 1.5rem !important; /* Reduzido de 3rem */
-        margin-top: 1.5rem !important; /* Reduzido de 2rem */
+        padding: 2rem 1.5rem !important;
+        margin-top: 1.5rem !important;
     }
 }
 
 /* Representative Badge compacta */
 .representative-badge {
-    padding: 2rem 2rem !important; /* Reduzido de 3rem */
+    padding: 2rem 2rem !important;
 }
 
 /* Footer compacta */
 .footer-content {
-    padding: 3rem 2rem 1.5rem !important; /* Reduzido de 4rem */
+    padding: 3rem 2rem 1.5rem !important;
 }
 
 .footer-grid {
-    margin-bottom: 2rem !important; /* Reduzido de 3rem */
+    margin-bottom: 2rem !important;
 }
 
 /* Benefit list - reduz gap */
 .benefit-list {
-    gap: 2rem 3rem !important; /* Reduzido de 3rem 4rem */
+    gap: 2rem 3rem !important;
 }
 
 @media (max-width: 768px) {
     .benefit-list {
-        gap: 1.5rem !important; /* Reduzido de 2rem */
+        gap: 1.5rem !important;
     }
 }
 
@@ -3083,4 +3052,40 @@ body>*:last-child:not(.whatsapp-float):not(.modal-overlay):not(script) {
 .video-player video::-webkit-media-controls-current-time-display,
 .video-player video::-webkit-media-controls-time-remaining-display {
     color: white;
+}
+
+/* ========================================
+   FIX EXTRA - GARANTIR FAMÍLIA COMPLETA VISÍVEL
+   ======================================== */
+
+/* Laptops médios */
+@media (min-width: 769px) and (max-width: 1199px) {
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
+            url('backg.png') center 45%/cover !important;
+    }
+}
+
+/* Monitores ultrawide e 4K */
+@media (min-width: 1920px) {
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
+            url('backg.png') center 45%/cover !important;
+    }
+}
+
+/* Telas com altura menor (notebooks em landscape) */
+@media (min-width: 769px) and (max-height: 700px) {
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
+            url('backg.png') center 45%/cover !important;
+    }
+}
+
+/* Mobile landscape */
+@media (max-width: 768px) and (orientation: landscape) {
+    .hero-section {
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.5) 100%),
+            url('backg.png') center 45%/cover !important;
+    }
 }
