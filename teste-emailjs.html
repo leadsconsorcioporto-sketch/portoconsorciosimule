@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste EmailJS - Porto Consórcios</title>
+    
+    <!-- EmailJS -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+       (function(){
+          emailjs.init("0KeA0T8qGpNvM5ZA_");
+       })();
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', Arial, sans-serif;
+            background: linear-gradient(135deg, #0046BE 0%, #4FC3F7 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #0046BE;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .status {
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .status.success {
+            background: #D4EDDA;
+            color: #155724;
+            border: 2px solid #C3E6CB;
+        }
+        
+        .status.error {
+            background: #F8D7DA;
+            color: #721C24;
+            border: 2px solid #F5C6CB;
+        }
+        
+        .status.info {
+            background: #D1ECF1;
+            color: #0C5460;
+            border: 2px solid #BEE5EB;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #E5E7EB;
+            border-radius: 8px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #0046BE;
+        }
+        
+        button {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #0046BE 0%, #4FC3F7 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 70, 190, 0.4);
+        }
+        
+        button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .log {
+            background: #F3F4F6;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 20px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            border: 2px solid #E5E7EB;
+        }
+        
+        .log-entry {
+            margin-bottom: 5px;
+            padding: 5px;
+            border-left: 3px solid #0046BE;
+            padding-left: 10px;
+        }
+        
+        .log-entry.error {
+            border-left-color: #DC2626;
+            color: #DC2626;
+        }
+        
+        .log-entry.success {
+            border-left-color: #10B981;
+            color: #10B981;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Teste EmailJS</h1>
+        <p class="subtitle">Teste isolado para diagnosticar o problema</p>
+        
+        <div id="status" style="display: none;" class="status"></div>
+        
+        <form id="testForm">
+            <div class="form-group">
+                <label>Nome completo</label>
+                <input type="text" id="nome" value="Igor Orlandi Barros" required>
+            </div>
+            
+            <div class="form-group">
+                <label>E-mail</label>
+                <input type="email" id="email" value="igororlandibarros@gmail.com" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Telefone</label>
+                <input type="tel" id="telefone" value="(19) 98280-0307" required>
+            </div>
+            
+            <div class="form-group">
+                <label>Crédito desejado</label>
+                <select id="credito" required>
+                    <option value="500000">R$ 500 mil</option>
+                    <option value="1000000">R$ 1 milhão</option>
+                </select>
+            </div>
+            
+            <button type="submit">Enviar Teste</button>
+        </form>
+        
+        <div class="log" id="log">
+            <strong>📋 Console de Logs:</strong>
+        </div>
+    </div>
+
+    <script>
+        const logDiv = document.getElementById('log');
+        const statusDiv = document.getElementById('status');
+        
+        function addLog(message, type = 'info') {
+            const entry = document.createElement('div');
+            entry.className = `log-entry ${type}`;
+            entry.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            logDiv.appendChild(entry);
+            logDiv.scrollTop = logDiv.scrollHeight;
+            console.log(message);
+        }
+        
+        function showStatus(message, type) {
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+        }
+        
+        // Verificar EmailJS ao carregar
+        window.addEventListener('load', function() {
+            addLog('Página carregada');
+            
+            setTimeout(function() {
+                if (typeof emailjs !== 'undefined') {
+                    addLog('✅ EmailJS detectado!', 'success');
+                    showStatus('✅ EmailJS está carregado e pronto!', 'success');
+                } else {
+                    addLog('❌ EmailJS NÃO detectado!', 'error');
+                    showStatus('❌ ERRO: EmailJS não foi carregado!', 'error');
+                }
+            }, 500);
+        });
+        
+        // Formulário
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            addLog('📤 Iniciando envio...');
+            
+            const nome = document.getElementById('nome').value;
+            const email = document.getElementById('email').value;
+            const telefone = document.getElementById('telefone').value;
+            const credito = document.getElementById('credito').value;
+            
+            addLog(`Nome: ${nome}`);
+            addLog(`Email: ${email}`);
+            addLog(`Telefone: ${telefone}`);
+            addLog(`Crédito: ${credito}`);
+            
+            if (typeof emailjs === 'undefined') {
+                addLog('❌ EmailJS não está disponível!', 'error');
+                showStatus('❌ EmailJS não carregado!', 'error');
+                return;
+            }
+            
+            const submitBtn = document.querySelector('button[type="submit"]');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Enviando...';
+            
+            addLog('Preparando dados...');
+            
+            const templateParams = {
+                from_name: nome,
+                from_email: email,
+                phone: telefone,
+                credit_amount: credito === '500000' ? 'R$ 500 mil' : 'R$ 1 milhão',
+                to_name: 'Porto Consórcios',
+                message: `Teste de envio\n\nNome: ${nome}\nEmail: ${email}\nTelefone: ${telefone}`
+            };
+            
+            addLog('Dados preparados:', 'info');
+            addLog(JSON.stringify(templateParams, null, 2), 'info');
+            
+            addLog('Enviando via EmailJS...');
+            
+            emailjs.send('service_haffxw3', 'template_xm1u4fh', templateParams)
+                .then(function(response) {
+                    addLog('✅ SUCESSO!', 'success');
+                    addLog(`Status: ${response.status}`, 'success');
+                    addLog(`Texto: ${response.text}`, 'success');
+                    showStatus('✅ Email enviado com sucesso! Verifique sua caixa de entrada.', 'success');
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Teste';
+                })
+                .catch(function(error) {
+                    addLog('❌ ERRO!', 'error');
+                    addLog(`Status: ${error.status || 'N/A'}`, 'error');
+                    addLog(`Texto: ${error.text || 'N/A'}`, 'error');
+                    addLog(`Mensagem: ${error.message || 'N/A'}`, 'error');
+                    addLog(`Erro completo: ${JSON.stringify(error)}`, 'error');
+                    showStatus(`❌ Erro ao enviar: ${error.text || error.message}`, 'error');
+                    
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Enviar Teste';
+                });
+        });
+    </script>
+</body>
+</html>
